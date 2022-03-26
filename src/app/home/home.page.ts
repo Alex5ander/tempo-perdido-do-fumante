@@ -13,14 +13,14 @@ export class HomePage {
 
   constructor() {}
 
-
-
   minutosParaHoras(minutos: number) {
-    return Math.floor(minutos / 60);
+    let horas = Math.floor(minutos / 60);
+    return horas > 24 ? 0 : horas;
   }
 
   horasParaDias(horas: number) {
-    return Math.floor(horas / 24);
+    let dias = Math.floor(horas / 24);
+    return dias > 30 ? 0 : dias;
   }
 
   diasParaMeses(dias: number) {
