@@ -1,0 +1,17 @@
+<div class="flex-container">
+  <ion-list>
+    <ion-label>
+      Quantidade de cigarros fumados
+      <ion-input [(ngModel)]="qtdCigarrosPorDia"  placeholder="Quantidade de cigarros fumados"></ion-input>
+    </ion-label>
+  
+    <ion-label>
+      Quantidade de anos fumados
+      <ion-input [(ngModel)]="qtdAnos" type="number" placeholder="Quantidade de anos fumados"></ion-input>
+    </ion-label>
+
+    <ion-label> {{temporestante}}</ion-label>
+  </ion-list>
+  
+  <ion-button expand="block" (click)="calcularTempoRestante()" >Calcular tempo de vida perdido</ion-button>
+ </div>
