@@ -1,17 +1,54 @@
-<div class="flex-container">
-  <ion-list>
-    <ion-label>
-      Quantidade de cigarros fumados
-      <ion-input [(ngModel)]="qtdCigarrosPorDia"  placeholder="Quantidade de cigarros fumados"></ion-input>
-    </ion-label>
-  
-    <ion-label>
-      Quantidade de anos fumados
-      <ion-input [(ngModel)]="qtdAnos" type="number" placeholder="Quantidade de anos fumados"></ion-input>
-    </ion-label>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Tempo perdido fumando</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-    <ion-label> {{temporestante}}</ion-label>
-  </ion-list>
+<ion-content class="ion-padding-horizontal">
+ 
+  <ion-list>
   
-  <ion-button expand="block" (click)="calcularTempoRestante()" >Calcular tempo de vida perdido</ion-button>
- </div>
+    <ion-item class="ion-align-items-center" >
+      <ion-label position="floating">Cigarros fumados</ion-label>
+      <ion-input
+        [(ngModel)]="qtdCigarrosPorDia"
+        placeholder="Insira a quantidade de cigarros fumados"
+      ></ion-input>
+      <ion-icon size="small" name="logo-no-smoking" slot="end"></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Anos fumados</ion-label>
+      <ion-input
+          [(ngModel)]="qtdAnos"
+          placeholder="Insira os anos fumados"
+        >
+      </ion-input>
+      <ion-icon size="small" name="calendar-number-outline" slot="end"></ion-icon>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list>
+    <ion-item lines="none">Minutos perdidos: {{minutosperdidos}}</ion-item>
+    <ion-item lines="none">Horas perdidas: {{horasperdidas}}</ion-item>
+    <ion-item lines="none">Dias perdidos: {{diasperdidos}}</ion-item>
+    <ion-item lines="none">Meses perdidos: {{mesesperdidos}}</ion-item>
+    <ion-item lines="none">Anos perdidos: {{anosperdidos}}</ion-item>
+
+    <ion-item lines="none">
+      <ion-label>{{resultado}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer class="ion-padding-horizontal" >
+  <ion-button
+    [disabled]="!qtdAnos || !qtdCigarrosPorDia"
+    expand="block"
+    (click)="calcularTempoRestante()"
+    >Calcular o tempo perdido fumando</ion-button
+  >
+</ion-footer>
+

@@ -6,21 +6,25 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  qtdCigarrosPorDia = 0;
+  qtdAnos = 0;
 
-  qtdCigarrosPorDia : number = 0;
-  qtdAnos : number = 0;
-  temporestante: string = "";
+  minutosperdidos = 0;
+  horasperdidas = 0;
+  diasperdidos = 0;
+  mesesperdidos = 0;
+  anosperdidos = 0;
+
+  resultado = '';
 
   constructor() {}
 
   minutosParaHoras(minutos: number) {
-    let horas = Math.floor(minutos / 60);
-    return horas > 24 ? 0 : horas;
+    return Math.floor(minutos / 60);
   }
 
   horasParaDias(horas: number) {
-    let dias = Math.floor(horas / 24);
-    return dias > 30 ? 0 : dias;
+    return Math.floor(horas / 24);
   }
 
   diasParaMeses(dias: number) {
@@ -32,21 +36,32 @@ export class HomePage {
   }
 
   calcularTempoRestante() {
-    let diasFumados = this.qtdAnos * 360;
-    let minutosFumados = diasFumados * 10;
-    
-    let horas = this.minutosParaHoras(minutosFumados);
+    const tempofumado = this.qtdAnos * 360;
 
-    let dias = this.horasParaDias(horas);
+    this.minutosperdidos = tempofumado * 10;
 
-    let meses = this.diasParaMeses(dias);
+    this.horasperdidas = this.minutosParaHoras(this.minutosperdidos);
 
-    let anos = this.mesesParaAno(meses);
+    this.diasperdidos = this.horasParaDias(this.horasperdidas);
 
-    console.log(" horas "+horas);
-    console.log(" dias "+dias);
-    console.log(" meses "+meses);
-    console.log(" anos "+anos);
+    this.mesesperdidos = this.diasParaMeses(this.diasperdidos);
+
+    this.anosperdidos = this.mesesParaAno(this.mesesperdidos);
+
+    const mi = this.minutosperdidos % 60;
+    const h = this.horasperdidas % 24;
+    const d = this.diasperdidos % 30;
+    const me = this.mesesperdidos % 12;
+
+    this.resultado =
+      this.anosperdidos +
+      ' anos, meses ' +
+      me +
+      ', dias ' +
+      d +
+      ', horas ' +
+      h +
+      ' e minutos ' +
+      mi;
   }
-
 }
